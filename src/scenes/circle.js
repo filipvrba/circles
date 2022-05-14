@@ -41,6 +41,7 @@ class Circle extends Scene {
 
     freeSignals() {
 
+        super.free();
         super.freeSignals();
 
         if ( this.parent )

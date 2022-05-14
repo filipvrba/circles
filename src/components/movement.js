@@ -5,7 +5,6 @@ class Movement extends BasicObject {
     constructor( speed ) {
 
         super();
-        this.edgeWindowHandler = () => this.edgeWindow();
 
         this.speed = speed;
 

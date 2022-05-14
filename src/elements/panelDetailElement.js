@@ -4,11 +4,9 @@ class PanelDetailElement extends HTMLElement {
 
         super();
 
-        const CIRCLES_COUNT = 10;
-
         this.detailHandler = (event) => this.detail(event.detail);
-        this.plusHandler = () => this.changeCirclesCount( CIRCLES_COUNT );
-        this.minusHandler = () => this.changeCirclesCount( -CIRCLES_COUNT );
+        this.plusHandler = () => this.changeCirclesCount( CIRCLES_GROUP );
+        this.minusHandler = () => this.changeCirclesCount( -CIRCLES_GROUP );
 
         this.init();
 

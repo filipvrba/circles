@@ -5,3 +5,4 @@ const PLUS = 'plus';
 const MINUS = 'minus';
 const CHANGE_CIRCLE = 'changeCircleCount';
 const CLICK = 'click';
+const CIRCLES_GROUP = 100;
