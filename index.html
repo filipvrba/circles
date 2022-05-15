@@ -9,6 +9,13 @@
         <panel-detail></panel-detail>
         <window-root></window-root>
 
+        <script>
+            window.onmessage = ( event ) => {
+
+                console.log( event.data );
+            };
+        </script>
+
         <script src="./src/constants.js"></script>
         <script src="./static/graph-engine-core.js"></script>
         <script type="module" src="./src/elements/index.js"></script>
