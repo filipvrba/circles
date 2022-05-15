@@ -7,6 +7,7 @@ class PanelDetailElement extends HTMLElement {
         this.detailHandler = (event) => this.detail(event.detail);
         this.plusHandler = () => this.changeCirclesCount( CIRCLES_GROUP );
         this.minusHandler = () => this.changeCirclesCount( -CIRCLES_GROUP );
+        this.postMessageHandler = (event) => this.postMessage( event.data );
 
         this.init();
 
@@ -97,8 +98,14 @@ class PanelDetailElement extends HTMLElement {
         }));
     }
 
+    postMessage( data ) {
+
+        console.log( data );
+    }
+
     connectedCallback() {
 
+        window.top.addEventListener( POST_MESSAGE, this.postMessageHandler );
         document.addEventListener( PANEL, this.detailHandler );
 
         this.plus.addEventListener( CLICK, this.plusHandler );
@@ -107,6 +114,7 @@ class PanelDetailElement extends HTMLElement {
 
     disconnectedCallback() {
 
+        window.top.removeEventListener( POST_MESSAGE, this.postMessageHandler );
         document.removeEventListener( PANEL, this.detailHandler );
 
         this.plus.removeEventListener( CLICK, this.plusHandler );
