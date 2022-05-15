@@ -21,9 +21,8 @@ class PanelDetailElement extends HTMLElement {
         const template = `
             <div class="panel">
                 <div class="labels">
-                    
-                        <p id="${ FPS }" class="${ FPS }" >0 fps</p>
-                        <p id="${ CIRCLES }" class="${ CIRCLES }">0</p>
+                        <p id="${ FPS }" class="${ FPS }" ><strong>0 fps</strong></p>
+                        <p id="${ CIRCLES }" class="${ CIRCLES }"><strong>0</strong></p>
                 </div>
                 <div class="buttons">
                     <button id="${ PLUS }" class="${ PLUS }" type="button">+</button>
