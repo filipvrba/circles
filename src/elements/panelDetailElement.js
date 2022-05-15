@@ -98,14 +98,14 @@ class PanelDetailElement extends HTMLElement {
         }));
     }
 
-    // postMessage( data ) {
+    postMessage( data ) {
 
-    //     console.log( data );
-    // }
+        console.log( data );
+    }
 
     connectedCallback() {
 
-        // window.addEventListener( POST_MESSAGE, this.postMessageHandler );
+        window.addEventListener( POST_MESSAGE, this.postMessageHandler );
         document.addEventListener( PANEL, this.detailHandler );
 
         this.plus.addEventListener( CLICK, this.plusHandler );
@@ -114,7 +114,7 @@ class PanelDetailElement extends HTMLElement {
 
     disconnectedCallback() {
 
-        // window.removeEventListener( POST_MESSAGE, this.postMessageHandler );
+        window.removeEventListener( POST_MESSAGE, this.postMessageHandler );
         document.removeEventListener( PANEL, this.detailHandler );
 
         this.plus.removeEventListener( CLICK, this.plusHandler );
