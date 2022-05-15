@@ -4,3 +4,8 @@ const windowRoot = document.querySelector( 'window-root' );
 const root = new Root( windowRoot );
 
 windowRoot.scene.add( root );
+
+window.onmessage = ( event ) => {
+
+    conosole.log( event.data );
+}
