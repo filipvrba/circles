@@ -6,4 +6,4 @@ const MINUS = 'minus';
 const CHANGE_CIRCLE = 'changeCircleCount';
 const CLICK = 'click';
 const CIRCLES_GROUP = 100;
-const POST_MESSAGE = 'postMessage';
+const POST_MESSAGE = 'message';
