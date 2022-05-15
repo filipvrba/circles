@@ -7,70 +7,23 @@ class PanelDetailElement extends HTMLElement {
         this.detailHandler = (event) => this.detail(event.detail);
         this.plusHandler = () => this.changeCirclesCount( CIRCLES_GROUP );
         this.minusHandler = () => this.changeCirclesCount( -CIRCLES_GROUP );
-        this.postMessageHandler = (event) => this.postMessage( event.data );
 
         this.init();
 
-        this.fps = this.shadowRoot.getElementById( FPS );
-        this.circles = this.shadowRoot.getElementById( CIRCLES );
-        this.plus = this.shadowRoot.getElementById( PLUS );
-        this.minus = this.shadowRoot.getElementById( MINUS );
+        this.fps = document.getElementById( FPS );
+        this.circles = document.getElementById( CIRCLES );
+        this.plus = document.getElementById( PLUS );
+        this.minus = document.getElementById( MINUS );
     }
 
     init() {
 
-        const template = document.createElement( 'template' );
-        template.innerHTML = `
-            <style type="text/css">
-                .panel {
-
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    margin: 0 10%;
-
-                    background-color: rgba(64, 64, 64, 0.3);
-
-                    border-style: solid;
-                    border-radius: 30px;
-                    border-color: rgba(41, 41, 41, 0.3);
-                }
-
-                .panel > div {
-
-                    margin: 5px 20px 5px 20px;
-                }
-
-                .labels {
-
-                    display: flex;
-                }
-
-                .labels > p {
-
-                    margin: 20px
-                }
-
-                .buttons {
-
-                    display: flex;
-                }
-
-                .buttons > button {
-
-                    margin: 10px;
-                }
-
-                button {
-
-                    width: 40px;
-                    cursor: pointer;
-                }
-            </style>
+        const template = `
             <div class="panel">
                 <div class="labels">
-                    <p id="${ FPS }" class="${ FPS }" >0 fps</p>
-                    <p id="${ CIRCLES }" class="${ CIRCLES }">0</p>
+                    
+                        <p id="${ FPS }" class="${ FPS }" >0 fps</p>
+                        <p id="${ CIRCLES }" class="${ CIRCLES }">0</p>
                 </div>
                 <div class="buttons">
                     <button id="${ PLUS }" class="${ PLUS }" type="button">+</button>
@@ -79,14 +32,13 @@ class PanelDetailElement extends HTMLElement {
             <div>
         `;
         
-        this.attachShadow( { mode: 'open' } );
-        this.shadowRoot.appendChild( template.content.cloneNode( true ) );
+        this.innerHTML = template;
     }
 
     detail( detail ) {
 
-        this.fps.innerHTML = `${ detail.fps } fps`;
-        this.circles.innerHTML = `${ detail.circles }`;
+        this.fps.innerHTML = `<strong>${ detail.fps } fps</strong>`;
+        this.circles.innerHTML = `<strong>${ detail.circles }</strong>`;
     }
 
     changeCirclesCount( circles ) {
@@ -98,15 +50,8 @@ class PanelDetailElement extends HTMLElement {
         }));
     }
 
-    postMessage( data ) {
-
-        this.fps.style.color = data.color;
-        this.circles.style.color = data.color;
-    }
-
     connectedCallback() {
 
-        window.addEventListener( POST_MESSAGE, this.postMessageHandler );
         document.addEventListener( PANEL, this.detailHandler );
 
         this.plus.addEventListener( CLICK, this.plusHandler );
@@ -115,7 +60,6 @@ class PanelDetailElement extends HTMLElement {
 
     disconnectedCallback() {
 
-        window.removeEventListener( POST_MESSAGE, this.postMessageHandler );
         document.removeEventListener( PANEL, this.detailHandler );
 
         this.plus.removeEventListener( CLICK, this.plusHandler );
