@@ -100,7 +100,8 @@ class PanelDetailElement extends HTMLElement {
 
     postMessage( data ) {
 
-        console.log( data );
+        this.fps.style.color = data.color;
+        this.circles.style.color = data.color;
     }
 
     connectedCallback() {
