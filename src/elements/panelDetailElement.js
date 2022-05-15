@@ -7,7 +7,7 @@ class PanelDetailElement extends HTMLElement {
         this.detailHandler = (event) => this.detail(event.detail);
         this.plusHandler = () => this.changeCirclesCount( CIRCLES_GROUP );
         this.minusHandler = () => this.changeCirclesCount( -CIRCLES_GROUP );
-        // this.postMessageHandler = (event) => this.postMessage( event.data );
+        this.postMessageHandler = (event) => this.postMessage( event.data );
 
         this.init();
 
