@@ -5,8 +5,8 @@ class PanelDetailElement extends HTMLElement {
         super();
 
         this.detailHandler = (event) => this.detail(event.detail);
-        this.plusHandler = () => this.changeCirclesCount( CIRCLES_GROUP );
-        this.minusHandler = () => this.changeCirclesCount( -CIRCLES_GROUP );
+        this.plusHandler = () => this.changeCirclesCount( PARAMETERS.circles );
+        this.minusHandler = () => this.changeCirclesCount( -PARAMETERS.circles );
 
         this.init();
 
@@ -14,12 +14,15 @@ class PanelDetailElement extends HTMLElement {
         this.circles = document.getElementById( CIRCLES );
         this.plus = document.getElementById( PLUS );
         this.minus = document.getElementById( MINUS );
+        this.panel = document.getElementById( PANEL_ID );
+
+        this.visible( PARAMETERS.isPanel );
     }
 
     init() {
 
         const template = `
-            <div class="panel">
+            <div id="${ PANEL_ID }" class="${ PANEL_ID }">
                 <div class="labels">
                         <p id="${ FPS }" class="${ FPS }" ><strong>0 fps</strong></p>
                         <p id="${ CIRCLES }" class="${ CIRCLES }"><strong>0</strong></p>
@@ -32,6 +35,14 @@ class PanelDetailElement extends HTMLElement {
         `;
         
         this.innerHTML = template;
+    }
+
+    visible( isPanel ) {
+
+        if ( isPanel )
+            return;
+
+        this.panel.style.display = "none";
     }
 
     detail( detail ) {

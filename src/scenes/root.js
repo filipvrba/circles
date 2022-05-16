@@ -32,7 +32,7 @@ class Root extends Scene {
         // Add's new objects
         this.window.scene.add( this.window.collision );
         this.add( this.circles );
-        this.createCircle( CIRCLES_GROUP );
+        this.createCircle( PARAMETERS.circles );
     }
 
     update( dt ) {
