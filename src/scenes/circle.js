@@ -8,7 +8,7 @@ class Circle extends Scene {
         super();
 
         this.id = this.constructor.name;
-        this.widthRadius = [10, 50];
+        this.widthRadius = PARAMETERS.radius;
         this.color;
         this.speed = PARAMETERS.speed;
         this.movement = new Movement( this.speed );

@@ -25,25 +25,39 @@ class Parameters {
 
     get speed() {
 
-        let parameter = this.getParameter( SPEED );
-        
+        return this.getArray( SPEED, SPEED_DEFINED );
+    }
 
-        if ( !parameter )
-            return SPEED_DEFINED;
-        
-        parameter = parameter.split( '-' );
+    get radius() {
 
-        const min = this.changeNumber( parameter[ ZERO ], SPEED_DEFINED[ ZERO ] );
+        return this.getArray( RADIUS, RADIUS_DEFINED );
+    }
+
+    getArray( key, array ) {
+
+        let parameter = this.getParameterArray( key, array );
+
+        const min = this.changeNumber( parameter[ ZERO ], array[ ZERO ] );
 
         if ( parameter.length === ONE )
             parameter = [ min, min ];
         else if ( parameter.length > ONE ) {
 
-            const max = this.changeNumber( parameter[ ONE ], SPEED_DEFINED[ ONE ] );
+            const max = this.changeNumber( parameter[ ONE ], array[ ONE ] );
             parameter = [ min, max ];
         }
 
         return parameter;
+    }
+
+    getParameterArray( key, array ) {
+
+        const parameter = this.getParameter( key );
+        
+        if ( !parameter )
+            return array;
+        
+        return parameter.split( '-' );
     }
 
     getParameter( key ) {
