@@ -1124,6 +1124,11 @@ class WindowRootElement extends HTMLElement {
         // this.scene.updateWorld();
     }
 
+    setZIndex( index = -1 ) {
+
+        this.renderer.canvas.style.zIndex = indexl;
+    }
+
     connectedCallback() {
 
         this.tick();
