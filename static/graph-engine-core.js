@@ -1126,7 +1126,7 @@ class WindowRootElement extends HTMLElement {
 
     setZIndex( index = -1 ) {
 
-        this.renderer.canvas.style.zIndex = indexl;
+        this.renderer.canvas.style.zIndex = index;
     }
 
     connectedCallback() {
