@@ -26,12 +26,12 @@ class Parameters {
     get speed() {
 
         let parameter = this.getParameter( SPEED );
-        parameter = parameter.split( '-' );
+        
 
-        if ( !parameter ) {
-
+        if ( !parameter )
             return SPEED_DEFINED;
-        }
+        
+        parameter = parameter.split( '-' );
 
         const min = this.changeNumber( parameter[ ZERO ], SPEED_DEFINED[ ZERO ] );
 
