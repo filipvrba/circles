@@ -28,6 +28,7 @@ class Root extends Scene {
         // Events
         window.addEventListener( 'resize', this.resizeHandler );
         document.addEventListener( CHANGE_CIRCLE, this.changeCircleHandler );
+        
 
         // Add's new objects
         this.window.scene.add( this.window.collision );

@@ -179,7 +179,7 @@ class BasicObject extends Dispatcher {
 
 				if ( typeof object.input !== 'undefined' ) {
 
-					object.input( signal.mousePosition );
+					object.input( signal );
 
 				}
 
@@ -445,13 +445,21 @@ class Input extends BasicObject {
         this.position = new Vector2( 0, 0 );
 
         this.mouseMoveHandler = ( event ) => this.mouseMove( event );
+        this.clickHandler = (event) => this.clickWindow( event );
 
+        this.init();
+    }
+
+    init() {
+
+        this.isMouseActive = false;
     }
 
     ready() {
 
         document.addEventListener( 'mousemove', this.mouseMoveHandler );
-
+        document.addEventListener( 'mousedown', this.clickHandler );
+        document.addEventListener( 'mouseup', this.clickHandler );
     }
 
     draw( renderer ) {
@@ -460,13 +468,33 @@ class Input extends BasicObject {
 
     }
 
+    emit() {
+
+        this.parent.emitSignal( { type: 'input', mousePosition: this.position,
+        mouseActive: this.isMouseActive } );
+    }
+
     mouseMove( event ) {
 
         this.position.x = event.x - this.canvasRect.left;
         this.position.y = event.y - this.canvasRect.top;
 
-        this.parent.emitSignal( { type: 'input', mousePosition: this.position } );
+        this.emit();
+    }
 
+    clickWindow( event ) {
+
+        switch (event.type) {
+
+            case "mousedown":
+                this.isMouseActive = true;
+                break;
+            case "mouseup":
+                this.init();
+                break;
+        }
+
+        this.emit();
     }
 
     free() {
@@ -474,7 +502,8 @@ class Input extends BasicObject {
         super.free();
         
         document.removeEventListener( 'mousemove', this.mouseMoveHandler );
-
+        document.removeEventListener( 'mousedown', this.clickHandler );
+        document.removeEventListener( 'mouseup', this.clickHandler );
     }
 
 }
