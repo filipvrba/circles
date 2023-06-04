@@ -25,7 +25,8 @@ class Movement extends BasicObject {
 
     input( event ) {
 
-        this.mouseActive = event.mouseActive;
+        // this.mouseActive = event.mouseActive;
+        this.mouseActive = true;
 
         if (this.mouseActive) {
 
@@ -44,12 +45,12 @@ class Movement extends BasicObject {
 
     update( dt ) {
 
-        if (this.mouseActive && this.distanceActive) {
-            this.mouseActTime += dt;
+        // if (this.mouseActive && this.distanceActive) {
+        //     this.mouseActTime += dt;
 
-        } else if (!this.mouseActive && this.mouseActTime > 1) {
-            this.mouseActTime -= dt;
-        }
+        // } else if (!this.mouseActive && this.mouseActTime > 1) {
+        //     this.mouseActTime -= dt;
+        // }
 
         const isCollide = this.root.window.collision.isCollide( this.parent );
         this.reverseDirection( isCollide );
@@ -59,7 +60,7 @@ class Movement extends BasicObject {
             this.speed[1]
         );
         this.velocity = this.direction.clone()
-            .multiplyScalar( speed * dt * this.mouseActTime );
+            .multiplyScalar( speed * dt );
 
         this.parent.position.x += this.velocity.x;
         this.parent.position.y += this.velocity.y;
